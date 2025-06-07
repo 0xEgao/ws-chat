@@ -24,6 +24,7 @@ pub async fn start_server() {
     while let Ok((stream, addr)) = listener.accept().await {
         let channel_manager = channel_manager.clone();
         info!("New connection from {}", addr);
+
         tokio::spawn(async move {
             let _ = handle_connection(stream, addr, channel_manager).await;
         });
